@@ -187,6 +187,53 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Create main DOM-element for pop-up message.
+   * This method returns nothing.
+   */
+  createMsgBox() {
+    if (this.runtime.msgContainer === null) {
+      const popupParams = Common.config.popupMsg;
+      const popupColorScheme = this.color.popupScheme;
+      const verticalIndent = (popupParams.verticalPosition === 'bottom') ? popupParams.bottomIndent : 0;
+
+      const popupStyleObj = document.createElement('style');
+      popupStyleObj.innerHTML =
+        `.popupMsgBox{position:fixed;${popupParams.horizontalPosition}:0;${popupParams.verticalPosition}:${verticalIndent}px;background-color:${popupColorScheme.background};font-size:${popupParams.fontSize};font-family:monospace;color:${popupColorScheme.master};}` +
+        `.popupMsgContainer{max-height:${popupParams.maxHeight}px;padding:7px;overflow:auto;border:1px solid ${popupColorScheme.border};cursor:default;}` +
+        `.popupMsgUnit{max-width:${popupParams.maxWidth}px;margin-bottom:3px;padding:3px 21px 3px 0;border-bottom:1px dashed #d0d0d0;white-space:pre;}` +
+        `.popupMsgUnit:hover{background-color:${popupColorScheme.hoverBG};}` +
+        `.popupMsgObserver{padding:7px;border:1px solid ${popupColorScheme.border};cursor:default;}` +
+        '.appendAnimation{-webkit-animation:append 600ms ease-out 1;animation:append 600ms ease-out 1;}' +
+        `@-webkit-keyframes append {from { background-color: ${popupColorScheme.appendBG};} to { background-color: inherit; }}` +
+        `@keyframes append {from { background-color: ${popupColorScheme.appendBG};} to { background-color: inherit; }}`;
+      document.body.appendChild(popupStyleObj);
+
+      const popupMsgBox = document.createElement('div');
+      popupMsgBox.className = 'popupMsgBox';
+      document.body.appendChild(popupMsgBox);
+
+      const msgContainer = document.createElement('div');
+      msgContainer.className = 'popupMsgContainer';
+      msgContainer.style.display = 'none';
+      if (popupParams.showClearTitle === true) {
+        msgContainer.setAttribute('title', 'Click to clear.');
+      }
+      msgContainer.onclick = () => this.popupContainerClear();
+      this.runtime.msgContainer = popupMsgBox.appendChild(msgContainer);
+      const observer = document.createElement('div');
+      observer.style.display = 'none';
+      if (popupParams.showClearTitle === true) {
+        observer.setAttribute('title', 'Click to clear.');
+      }
+      observer.onclick = () => {
+        observer.style.display = 'none';
+      };
+      this.runtime.observer = popupMsgBox.appendChild(observer);
+    }
+  }
 }
 
 module.exports = new ClientLib();
