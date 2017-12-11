@@ -170,6 +170,23 @@ class Common {
     }
     this.console.error(result);
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string value with a newline character at the end of the result.
+   * @param {*} value - String for processing.
+   * @returns {string}
+   */
+  singleLine(value) {
+    const lineValue = this.validatingString(value);
+    let result = ''; // By default.
+
+    if (lineValue) {
+      result = lineValue + this.consoleEOL;
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
