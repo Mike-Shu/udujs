@@ -120,6 +120,30 @@ class UduJS {
 
     return performanceResult;
   }
+
+  //--------------------------------------------------
+  /**
+   * Run-time testing (RTT).
+   * The starting point for computing the execution time of some code.
+   * This method returns nothing.
+   * @param {string} [name] - An optional explanatory name for Run-time testing.
+   * @param {int} [levelIndex] - An optional index for the level of nesting (for nested tests).
+   */
+  rttStart(name = '', levelIndex = 0) {
+    if (this.executionAllowed) {
+      try {
+        Common.checkValueType(name, 'String', 'rttStart1');
+        Common.checkValueType(levelIndex, 'Number', 'rttStart2');
+        const level = Common.setRTTLevel(levelIndex);
+        Common.checkValueType(level, 'Object', 'rttStart3');
+
+        level.name = name;
+        level.time = ServerLib.getMilliseconds(process.hrtime());
+      } catch (e) {
+        Common.errorHandler(e);
+      }
+    }
+  }
 }
 
 module.exports = UduJS;
