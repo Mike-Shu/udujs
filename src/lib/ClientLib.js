@@ -120,6 +120,45 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the correct array for outputting colored data to the console.
+   * @param {Array} value - An array with data pairs in the format: string, color.
+   * @returns {Array}
+   */
+  prepareColoring(value) { // TODO: refactoring.
+    const result = [];
+
+    if (Common.getValueType(value) === 'Array' && (value.length / 2) === Math.round(value.length / 2)) {
+      if (this.isColoringAvailable()) {
+        const textsArr = [];
+        const colorsArr = [];
+        value.forEach((v, i) => {
+          if ((i / 2) === Math.round(i / 2)) {
+            textsArr.push(`%c${v}`);
+          } else {
+            const colorStyle = this.color[v];
+            colorsArr.push((colorStyle === undefined) ? 'color: none' : colorStyle);
+          }
+        });
+        if (textsArr.length) {
+          result.push(textsArr.join(''));
+          result.push(...colorsArr);
+        }
+      } else {
+        const textsArr = [];
+        value.forEach((v, i) => {
+          if ((i / 2) === Math.round(i / 2)) {
+            textsArr.push(v);
+          }
+        });
+        result.push(textsArr.join(''));
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
