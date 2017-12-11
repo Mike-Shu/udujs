@@ -439,6 +439,37 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Creates and returns an object to store the test result with a certain level of nesting.
+   * For run-time testing (RTT).
+   * @param {int} levelIndex - Level of nesting.
+   * @returns {object}
+   */
+  setRTTLevel(levelIndex) {
+    const index = this.validatingInteger(levelIndex);
+    const levelsPack = this.testLevelsPack;
+    let result = null; // By default.
+
+    if (this.getValueType(levelsPack) === 'Array') {
+      const layersPackLength = levelsPack.length;
+
+      if (index < layersPackLength) { // Level is ready.
+        if (levelsPack[index] === Object(levelsPack[index])) {
+          result = levelsPack[index];
+        }
+      } else if (index === layersPackLength) { // Need a new level.
+        levelsPack.push({
+          time: 0,
+          name: '',
+        });
+        result = levelsPack[index];
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
