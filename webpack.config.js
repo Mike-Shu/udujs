@@ -57,7 +57,6 @@ switch (environment) {
       files: [
         'public/index.html',
         'public/js/udu.js',
-        'public/js/utility.js',
         'public/js/app.js',
       ],
     }));
