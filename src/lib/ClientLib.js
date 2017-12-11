@@ -92,6 +92,34 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a Boolean value: whether the browser console supports coloring.
+   * @returns {boolean}
+   */
+  isColoringAvailable() { // TODO: refactoring.
+    let result = false; // By default.
+
+    if (this.serviceApp.allowColorization === true) {
+      if (typeof this.runtime.cache.colorizationStatus === 'boolean') {
+        result = this.runtime.cache.colorizationStatus;
+      } else {
+        switch (this.getBrowserSignature) {
+          case 'Webkit':
+            result = true;
+            break;
+          case 'Firefox':
+            result = true;
+            break;
+          default:
+        }
+        this.runtime.cache.colorizationStatus = result;
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
