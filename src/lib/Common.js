@@ -249,6 +249,26 @@ class Common {
     const indentSize = this.validatingInteger(value);
     return indentSize > 0 ? this.config.serviceApp.consoleSpace.repeat(indentSize) : '';
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the current indent value in the output stream.
+   * Required to visualize the nesting hierarchy of objects.
+   * @param {int} value - Required indent value.
+   * @returns {int}
+   */
+  checkIndentSize(value) {
+    const globalValue = this.validatingInteger(this.config.runtime.globalIndentSize);
+    let indentSize = this.validatingInteger(value);
+
+    if (globalValue > 0) {
+      indentSize = globalValue + 1;
+    } else {
+      indentSize = indentSize > 0 ? indentSize : 0;
+    }
+
+    return indentSize;
+  }
 }
 
 module.exports = new Common();
