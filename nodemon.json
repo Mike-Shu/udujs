@@ -1,0 +1,16 @@
+{
+  "watch": [
+    "app/**/*",
+    "src/**/*"
+  ],
+  "ignore": [
+    "app/client-app.js",
+    "src/Client.js",
+    "src/lib/ClientLib.js"
+  ],
+  "verbose": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "ext": "js json"
+}
