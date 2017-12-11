@@ -1,0 +1,4 @@
+--reporter min
+--sort
+--check-leaks
+--bail
