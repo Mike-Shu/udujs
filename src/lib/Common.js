@@ -147,6 +147,29 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * The error handler for the "catch" block.
+   * Displays the type and description of the error in the console.
+   * This method returns nothing.
+   * @param {Error|Object} value - An object with error information.
+   */
+  errorHandler(value) {
+    let result;
+    const valueType = this.getValueType(value);
+
+    if (valueType === 'Error' || valueType === 'Object') {
+      let errorName = this.validatingString(value.name);
+      if (!errorName) {
+        errorName = 'Error';
+      }
+      result = `${errorName}: ${this.lowerCaseFirst(this.getErrorMessage(value.message))}`;
+    } else {
+      result = `TypeError: ${this.getErrorMessage('errorHandler1')}`;
+    }
+    this.console.error(result);
+  }
 }
 
 module.exports = new Common();
