@@ -159,6 +159,34 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the final version of the debug message.
+   * @param {*} value - A value of any type.
+   * @param {string} comment - Explanatory comment to the displayed value.
+   * @returns {Array}
+   */
+  getDebugMessage(value, comment) {
+    const msgComment = Common.validatingString(comment);
+    const result = [];
+
+    this.runtime.globalIndentSize = 0;
+
+    result.push(...[`Type: ${Common.getValueType(value)}`, 'slave']);
+    if (msgComment) {
+      result.push(...[
+        ' | ', 'slave',
+        msgComment, 'master',
+      ]);
+    }
+    result.push(...[
+      `${this.serviceApp.consoleEOL}Value: `, 'slave',
+      Common.getResult(value), 'master',
+    ]);
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
