@@ -128,6 +128,25 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the error text in accordance with the specified code.
+   * @param {string} value - Error code.
+   * @returns {string}
+   */
+  getErrorMessage(value) {
+    const errorName = this.validatingString(value);
+    let result;
+
+    if (errorName === '' || Object.keys(this.errors).join(',').indexOf(errorName) === -1) {
+      result = errorName.length ? `${errorName}.` : 'unknown error name.';
+    } else {
+      result = this.errors[errorName];
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
