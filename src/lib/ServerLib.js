@@ -141,6 +141,36 @@ class ServerLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the final version of the debug message.
+   * @param {*} value - A value of any type.
+   * @param {string} comment - Explanatory comment to the displayed value.
+   * @returns {string}
+   */
+  getDebugMessage(value, comment) {
+    let infoString;
+    const typeString = `Type: ${Common.getValueType(value)}`;
+    const msgComment = Common.validatingString(comment);
+
+    Common.config.runtime.globalIndentSize = 0;
+
+    if (msgComment) {
+      infoString = this.wrapString(`${typeString} | `, 'slave') +
+        this.wrapString(msgComment, 'master');
+    } else {
+      infoString = this.wrapString(typeString, 'slave');
+    }
+
+    let resultValue = this.wrapString(Common.getResult(value), 'master');
+    resultValue = this.highlightAttentions(resultValue);
+    resultValue = this.highlightCommas(resultValue);
+
+    return Common.singleLine(infoString) +
+      this.wrapString('Value: ', 'slave') +
+      resultValue;
+  }
 }
 
 module.exports = new ServerLib();
