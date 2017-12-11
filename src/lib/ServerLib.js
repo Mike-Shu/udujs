@@ -171,6 +171,25 @@ class ServerLib {
       this.wrapString('Value: ', 'slave') +
       resultValue;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the current system time or the difference between the current and last requests.
+   * For run-time testing (RTT).
+   * @param {Array} [previousValue] - The value of the last request.
+   * @returns {Array}
+   */
+  getProcessTime(previousValue = null) {
+    let result = [0, 0];
+
+    if (Common.getValueType(previousValue) === 'Array') {
+      result = this.hrtime(previousValue);
+    } else {
+      result = this.hrtime();
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ServerLib();
