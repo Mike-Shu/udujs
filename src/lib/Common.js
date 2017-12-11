@@ -187,6 +187,26 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Drops a type error if the type of the value to be checked does not match the required type.
+   * This method returns nothing.
+   * @param {*} value - The value to check.
+   * @param {string} requiredType - Required type for verification.
+   * @param {string} errorName - The special name of the error specified in the "errors" object.
+   */
+  checkValueType(value, requiredType, errorName) {
+    if (this.getValueType(requiredType) !== 'String') {
+      throw new TypeError('checkType1');
+    }
+    if (this.getValueType(errorName) !== 'String') {
+      throw new TypeError('checkType2');
+    }
+    if (this.getValueType(value) !== requiredType) {
+      throw new TypeError(errorName);
+    }
+  }
 }
 
 module.exports = new Common();
