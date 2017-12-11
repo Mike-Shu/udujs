@@ -95,6 +95,17 @@ class UduJS {
       ClientLib.addMessage(ClientLib.getDebugMessage(value, comment));
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Removes debugging information from a pop-up message.
+   * This method returns nothing.
+   */
+  popupReset() {
+    if (this.executionAllowed) {
+      ClientLib.popupContainerClear();
+    }
+  }
 }
 
 module.exports = UduJS;
