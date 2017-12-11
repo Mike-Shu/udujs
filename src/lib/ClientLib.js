@@ -360,6 +360,29 @@ class ClientLib {
       container.style.display = 'block';
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Resets the "observer" element to its original state.
+   * Returns a reference to an element to display debugging information.
+   * For a fixed field in a pop-up message.
+   * @returns {Element}
+   */
+  getObserver() {
+    const observerValue = document.createElement('div');
+    const observerObj = this.runtime.observer;
+    const observerFirstChild = observerObj.firstChild;
+
+    observerValue.className = 'popupMsgObserver appendAnimation';
+    if (observerFirstChild === null) {
+      observerObj.appendChild(observerValue);
+    } else {
+      observerObj.replaceChild(observerValue, observerFirstChild);
+    }
+    observerObj.style.display = 'block';
+
+    return observerValue;
+  }
 }
 
 module.exports = new ClientLib();
