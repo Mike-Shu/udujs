@@ -320,6 +320,56 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the string representation of the array.
+   * Required to visualize the nesting hierarchy of objects.
+   * @param {Array} value - Array for processing.
+   * @param {int} [indent] - The current value of indentation in the output stream. Zero by default.
+   * @param {boolean} [initialIndentation] - Make the initial indentation? Disabled by default.
+   * @returns {string}
+   */
+  showArray(value, indent = 0, initialIndentation = false) {
+    let result;
+
+    if (this.getValueType(value) === 'Array') {
+      const indentSize = this.checkIndentSize(indent);
+      const nextIteration = indentSize + 1;
+      const resultItemsArr = [];
+
+      if (this.validatingBoolean(initialIndentation)) {
+        result = this.singleLine(`${this.setLeftIndent(indentSize)}[`);
+      } else {
+        result = this.singleLine('[');
+      }
+
+      value.forEach((item, index) => {
+        const itemType = this.getValueType(item);
+        let itemValue;
+
+        if (itemType === 'Array') {
+          itemValue = this.showArray(item, nextIteration);
+        } else if (itemType === 'Object') {
+          itemValue = this.showObject(item, nextIteration);
+        } else {
+          itemValue = this.getResult(item);
+        }
+
+        resultItemsArr.push(`${this.setLeftIndent(nextIteration)}[${index}] = ${itemValue}`);
+      });
+
+      if (resultItemsArr.length) {
+        result += this.singleLine(resultItemsArr.join(`,${this.consoleEOL}`));
+      }
+
+      result += `${this.setLeftIndent(indentSize)}]`;
+    } else {
+      result = this.singleLine(this.getErrorMessage('showArray1'));
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
