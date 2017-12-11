@@ -136,6 +136,28 @@ class UduJS {
       }
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Displays debug information in a fixed field in a pop-up message.
+   * This method returns nothing.
+   * @param {string|number|boolean} value - Any value of a valid type: string, number or boolean.
+   */
+  observer(value) {
+    if (this.executionAllowed) {
+      const valueType = Common.getValueType(value);
+      const allowedTypes = [
+        'String',
+        'Number',
+        'Boolean',
+      ];
+
+      if (allowedTypes.join(',').indexOf(valueType) !== -1) {
+        ClientLib.createMsgBox();
+        ClientLib.getObserver().innerText = value.toString();
+      }
+    }
+  }
 }
 
 module.exports = UduJS;
