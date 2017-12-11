@@ -422,6 +422,23 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a number rounded to a certain number of decimal places represented as a string.
+   * The number of decimal places is specified in the configuration.
+   * @param {number} value - Number to process.
+   * @returns {string}
+   */
+  correctDecimals(value) {
+    let result = this.getErrorMessage('correctDecimalPlaces1');
+
+    if (typeof value === 'number') {
+      result = value.toFixed(parseInt(this.config.performance.decimalPlaces, 10));
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
