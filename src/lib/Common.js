@@ -470,6 +470,27 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns an existing object with a test result for a certain level of nesting.
+   * For run-time testing (RTT).
+   * @param {int} levelIndex - Level of nesting.
+   * @returns {object}
+   */
+  getRTTLevel(levelIndex) {
+    const index = this.validatingInteger(levelIndex);
+    const levelsPack = this.testLevelsPack;
+    let result = null; // By default.
+
+    if (this.getValueType(levelsPack) === 'Array') {
+      if (levelsPack[index] === Object(levelsPack[index])) {
+        result = levelsPack[index];
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
