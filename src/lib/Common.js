@@ -269,6 +269,57 @@ class Common {
 
     return indentSize;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the adapted value for output to the console or to a pop-up message.
+   * @param {*} value - A value of any type.
+   * @returns {*}
+   */
+  getResult(value) {
+    const valueType = this.getValueType(value);
+    let result;
+
+    switch (valueType) {
+      case 'String':
+        result = `"${value}"`;
+        break;
+      case 'Number':
+        result = value.toString();
+        break;
+      case 'Boolean':
+        result = value.toString();
+        break;
+      case 'Array':
+        result = this.showArray(value);
+        break;
+      case 'Object':
+        result = this.showObject(value);
+        break;
+      case 'Function': // TODO: Fix the indention for the function body.
+        result = value.toString();
+        break;
+      case 'Undefined':
+        result = valueType;
+        break;
+      case 'Null':
+        result = valueType;
+        break;
+      case 'NaN':
+        result = valueType;
+        break;
+      case 'Infinity':
+        result = valueType;
+        break;
+      case '-Infinity':
+        result = valueType;
+        break;
+      default:
+        result = this.getErrorMessage('getResult1');
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
