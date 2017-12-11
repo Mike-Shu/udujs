@@ -43,6 +43,59 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * A method for setting custom values in the application configuration.
+   * This method returns nothing.
+   * @param {object} customSettingsObj - An object with custom settings.
+   */
+  setCustomSettings(customSettingsObj) {
+    if (this.getValueType(customSettingsObj) === 'Object') {
+      const publicSettings = { // Format: setting name: section in default config.
+        fontSize: ['popupMsg', 'String'],
+        showClearTitle: ['popupMsg', 'Boolean'],
+        horizontalPosition: ['popupMsg', 'String'],
+        verticalPosition: ['popupMsg', 'String'],
+        maxWidth: ['popupMsg', 'Number|String'],
+        maxHeight: ['popupMsg', 'Number'],
+        showOutputDefault: ['serviceApp', 'String'],
+        consoleEOL: ['serviceApp', 'String'],
+        consoleColorScheme: ['serviceApp', 'String'],
+        popupColorScheme: ['serviceApp', 'String'],
+        serverColorScheme: ['serviceApp', 'String'],
+        allowColorization: ['serviceApp', 'Boolean'],
+        decimalPlaces: ['performance', 'Number'],
+        run: ['runtime', 'Boolean'],
+      };
+      const warnMessageArr = [];
+
+      Object.keys(customSettingsObj).forEach((property) => {
+        if (Object.prototype.hasOwnProperty.call(publicSettings, property)) {
+          const configSectionName = publicSettings[property][0];
+          const configPropertyType = publicSettings[property][1];
+          const configSection = this.config[configSectionName];
+
+          if (configSection === Object(configSection)) {
+            const propertyType = this.getValueType(customSettingsObj[property]);
+            if (configPropertyType.indexOf(propertyType) === -1) {
+              warnMessageArr.push(`Custom configuration: the value of the "${property}" property must be a ${configPropertyType}. The custom value is ignored.`);
+            } else {
+              configSection[property] = customSettingsObj[property];
+            }
+          } else {
+            warnMessageArr.push(`Custom configuration: the "${configSectionName}" section does not exist.`);
+          }
+        } else {
+          warnMessageArr.push(`Custom configuration: the "${property}" property is not allowed to modify, or it does not exist.`);
+        }
+      });
+
+      if (warnMessageArr.length) {
+        this.console.warn(warnMessageArr.join(this.config.serviceApp.consoleEOL));
+      }
+    }
+  }
 }
 
 module.exports = new Common();
