@@ -12,7 +12,7 @@ module.exports = {
   },
   serviceApp: {
     showOutputDefault: 'window', // Default output for "Show" method: "window" or "console".
-    consoleEOL: '\r\n', // Newline character for console message. "\r\n" - Windows-style, "\n" - Linux-style.
+    consoleEOL: '\n', // Newline character for console message. "\r\n" - Windows-style, "\n" - Linux-style.
     consoleSpace: '  ', // One block of spaces: for console messages.
     appName: 'UduJS',
     appDescription: 'A simple universal debugging utility for JavaScript code.',
