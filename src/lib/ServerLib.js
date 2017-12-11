@@ -48,6 +48,21 @@ class ServerLib {
      */
     this.getMilliseconds = hrTimeValue => ((hrTimeValue[0] * 1e9) + hrTimeValue[1]) / 1e6;
   }
+
+  //--------------------------------------------------
+  /**
+   * Get high-resolution real time value.
+   * @returns {*}
+   */
+  get hrtime() {
+    let result = null;
+
+    if (typeof this.hrtimeFunc === 'function') {
+      result = this.hrtimeFunc;
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ServerLib();
