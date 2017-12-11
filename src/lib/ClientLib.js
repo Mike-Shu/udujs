@@ -257,6 +257,31 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string where data types that require special attention are highlighted.
+   * @param {string} value - The source string.
+   * @returns {string}
+   */
+  highlightAttentions(value) {
+    let result = Common.validatingString(value);
+    const warningsArr = [
+      'Undefined',
+      'Null',
+      'NaN',
+      'Infinity',
+      '-Infinity',
+    ];
+
+    warningsArr.forEach((item) => {
+      if (result.indexOf(`: ${item}`) !== -1) {
+        result = result.split(`: ${item}`).join(`: ${this.wrapString(item, this.color.popupScheme.attention)}`);
+      }
+    });
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
