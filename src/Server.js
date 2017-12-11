@@ -70,6 +70,56 @@ class UduJS {
         ServerLib.getDebugMessage(value, comment));
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Run-time testing (RTT).
+   * Sets the control point in the code.
+   * Calculates the code execution time between two control points (in milliseconds).
+   * Displays the calculated value in the console.
+   * @param {string} [name] - An optional explanatory name for the control point.
+   * @returns {number} - Returns the computed value.
+   */
+  rttPoint(name = '') {
+    let performanceResult = 0;
+
+    if (this.executionAllowed) {
+      const processTimeNow = ServerLib.getProcessTime();
+
+      try {
+        Common.checkValueType(name, 'String', 'rttPoint1');
+        const pointTime = ServerLib.testPointTime;
+        Common.checkValueType(pointTime, 'Array', 'rttPoint2');
+        ServerLib.testPointTime = processTimeNow;
+        let result;
+
+        if (pointTime.length === 0) {
+          result = this.appConfig.consoleEOL +
+            ServerLib.appName +
+            ServerLib.wrapString('Point RTT | 0 ms | ', 'slave');
+          if (name) {
+            result += ServerLib.wrapString(name, 'master');
+          } else {
+            result += ServerLib.wrapString('Starting point.', 'master');
+          }
+        } else {
+          performanceResult = ServerLib.getMilliseconds(ServerLib.getProcessTime(pointTime));
+          result = ServerLib.appName +
+            ServerLib.wrapString('Point RTT | ', 'slave') +
+            ServerLib.wrapString(`+${Common.correctDecimals(performanceResult)} ms`, 'master');
+          if (name) {
+            result += ServerLib.wrapString(' | ', 'slave') +
+              ServerLib.wrapString(name, 'master');
+          }
+        }
+        Common.console.info(result);
+      } catch (e) {
+        Common.errorHandler(e);
+      }
+    }
+
+    return performanceResult;
+  }
 }
 
 module.exports = UduJS;
