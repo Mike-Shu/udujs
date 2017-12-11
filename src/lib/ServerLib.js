@@ -124,6 +124,23 @@ class ServerLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string where commas are highlighted.
+   * @param {string} value - The source string.
+   * @returns {string}
+   */
+  highlightCommas(value) {
+    let result = Common.validatingString(value);
+    const commaSymbol = `,${Common.config.serviceApp.consoleEOL}`;
+
+    if (result.indexOf(commaSymbol) !== -1) {
+      result = result.split(commaSymbol).join(this.color.reset + this.wrapString(commaSymbol, 'slave') + this.color.master);
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ServerLib();
