@@ -52,6 +52,21 @@ class ClientLib {
     this.userAgent = window.navigator.userAgent;
     this.performanceObj = window.performance;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the timestamp (DOMHighResTimeStamp).
+   * @returns {*}
+   */
+  get performanceNow() {
+    let result = null;
+
+    if (typeof this.performanceObj === 'object' && typeof this.performanceObj.now === 'function') {
+      result = this.performanceObj.now();
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
