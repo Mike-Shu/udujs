@@ -233,6 +233,44 @@ class UduJS {
       }
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Run-time testing (RTT).
+   * The end point for the "rttStart()" method.
+   * Calculates the code execution time between the start and current points (in milliseconds).
+   * Displays the calculated value in the console.
+   * @param {int} [levelIndex] - An optional index for the level of nesting (for nested tests).
+   * @returns {number} - Returns the computed value.
+   */
+  rttFinish(levelIndex = 0) {
+    let performanceResult = 0;
+
+    if (this.executionAllowed && this.performanceAllowed) {
+      const performance = ClientLib.performanceNow;
+
+      try {
+        Common.checkValueType(levelIndex, 'Number', 'rttFinish1');
+        const level = Common.getRTTLevel(levelIndex);
+        Common.checkValueType(level, 'Object', 'rttFinish2');
+
+        performanceResult = performance - level.time;
+        if (level.name) {
+          Common.console.info(...ClientLib.prepareColoring([
+            ...ClientLib.appName,
+            ...[
+              `Single RTT | ${Common.correctDecimals(performanceResult)} ms | `, 'slave',
+              level.name, 'master',
+            ],
+          ]));
+        }
+      } catch (e) {
+        Common.errorHandler(e);
+      }
+    }
+
+    return performanceResult;
+  }
 }
 
 module.exports = UduJS;
