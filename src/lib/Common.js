@@ -207,6 +207,36 @@ class Common {
       throw new TypeError(errorName);
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a valid Boolean value.
+   * @param {*} value - A value of any type.
+   * @returns {boolean}
+   */
+  validatingBoolean(value) {
+    return this.getValueType(value) === 'Boolean' ? value : false;
+  }
+
+  //--------------------------------------------------
+  /**
+   * Returns a valid integer value.
+   * @param {*} value - A value of any type.
+   * @returns {int}
+   */
+  validatingInteger(value) {
+    return this.getValueType(value) === 'Number' ? parseInt(value, 10) : 0;
+  }
+
+  //--------------------------------------------------
+  /**
+   * Returns a valid string value.
+   * @param {*} value - A value of any type.
+   * @returns {string}
+   */
+  validatingString(value) {
+    return this.getValueType(value) === 'String' ? value : '';
+  }
 }
 
 module.exports = new Common();
