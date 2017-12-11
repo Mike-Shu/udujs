@@ -87,6 +87,18 @@ class ServerLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * This method is required in order to perform coloring only after loading the color scheme.
+   * This method returns nothing.
+   */
+  executeColoring() {
+    this.appName = this.wrapString(`[${this.wrapString(Common.config.serviceApp.appName, 'heading')}] `, 'slave');
+    this.appDescription = this.wrapString(Common.config.serviceApp.appDescription, 'heading');
+    this.appVersion = this.wrapString(`Version: ${Common.config.serviceApp.appVersion}`, 'slave');
+    this.appStopped = this.wrapString(Common.getErrorMessage('runningStopped'), 'master');
+  }
 }
 
 module.exports = new ServerLib();
