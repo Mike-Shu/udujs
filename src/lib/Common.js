@@ -96,6 +96,38 @@ class Common {
       }
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Loads a color scheme based on preferences.
+   * This method returns nothing.
+   */
+  loadColorScheme() {
+    const appConfig = this.config.serviceApp;
+    const schemeSections = [
+      'console',
+      'popup',
+      'server',
+    ];
+    let result = true;
+
+    try {
+      schemeSections.forEach((section) => {
+        const selectedSchemeName = appConfig[`${section}ColorScheme`];
+        const colorScheme = colorSchemes[section][selectedSchemeName];
+        if (this.getValueType(colorScheme) === 'Object') {
+          this.config.runtime.colorScheme[section] = colorScheme;
+        } else {
+          throw new Error(`unknown name for the color scheme "${selectedSchemeName}". Check the App configuration.`);
+        }
+      });
+    } catch (e) {
+      this.console.warn(`${e.name}: ${e.message}`);
+      result = false;
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
