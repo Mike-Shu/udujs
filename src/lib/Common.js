@@ -370,6 +370,58 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the string representation of the object.
+   * Required to visualize the nesting hierarchy of objects.
+   * @param {object} value - Object for processing.
+   * @param {int} [indent] - The current value of indentation in the output stream. Zero by default.
+   * @param {boolean} [initialIndentation] - Make the initial indentation? Disabled by default.
+   * @returns {string}
+   */
+  showObject(value, indent = 0, initialIndentation = false) {
+    let result;
+
+    if (this.getValueType(value) === 'Object') {
+      const object = Object.assign({}, value); // Get an object with all enumerable properties.
+      const indentSize = this.checkIndentSize(indent);
+      const nextIteration = indentSize + 1;
+      const resultItemsArr = [];
+
+      if (this.validatingBoolean(initialIndentation)) {
+        result = this.singleLine(`${this.setLeftIndent(indentSize)}{`);
+      } else {
+        result = this.singleLine('{');
+      }
+
+      Object.keys(object).forEach((property) => {
+        const item = object[property];
+        const itemType = this.getValueType(item);
+        let itemValue;
+
+        if (itemType === 'Array') {
+          itemValue = this.showArray(item, nextIteration, false);
+        } else if (itemType === 'Object') {
+          itemValue = this.showObject(item, nextIteration, false);
+        } else {
+          itemValue = this.getResult(item);
+        }
+
+        resultItemsArr.push(`${this.setLeftIndent(nextIteration) + property}: ${itemValue}`);
+      });
+
+      if (resultItemsArr.length) {
+        result += this.singleLine(resultItemsArr.join(`,${this.consoleEOL}`));
+      }
+
+      result += `${this.setLeftIndent(indentSize)}}`;
+    } else {
+      result = this.singleLine(this.getErrorMessage('showObject1'));
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
