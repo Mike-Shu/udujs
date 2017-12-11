@@ -63,6 +63,30 @@ class ServerLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string wrapped in the specified color.
+   * @param {string} value - The string to be wrapped.
+   * @param {string} color - One of the colors defined in the class constructor.
+   * @returns {string}
+   */
+  wrapString(value, color) {
+    const stringForWrapping = Common.validatingString(value);
+    const wrapColor = Common.validatingString(color);
+    let result = '';
+
+    if (stringForWrapping) {
+      const resultColor = this.color[wrapColor];
+      if (typeof resultColor === 'undefined') {
+        result = stringForWrapping;
+      } else {
+        result = resultColor + stringForWrapping + this.color.reset;
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ServerLib();
