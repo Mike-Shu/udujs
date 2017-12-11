@@ -271,6 +271,76 @@ class UduJS {
 
     return performanceResult;
   }
+
+  //--------------------------------------------------
+  /**
+   * Run-time testing (RTT).
+   * Calculates the average execution time of some code (in milliseconds).
+   * Displays the calculated value in the console.
+   * @param {function} codeContainer - Container for the code under test.
+   * @param {int} cycles - Number of cycles to repeat the test (maximum 1000 cycles).
+   * @param {string} [name] - An optional explanatory name for Runtime testing.
+   * @param {boolean} [timeEachIteration] - Display the execution time of each iteration?
+   * Optional argument, disabled by default.
+   * @returns {number} - Returns the computed value.
+   */
+  rttAverage(codeContainer, cycles, name = '', timeEachIteration = false) {
+    let performanceResult = 0;
+
+    if (this.executionAllowed && this.performanceAllowed) {
+      try {
+        Common.checkValueType(codeContainer, 'Function', 'rttAverage1');
+        Common.checkValueType(cycles, 'Number', 'rttAverage2');
+        Common.checkValueType(name, 'String', 'rttAverage3');
+        Common.checkValueType(timeEachIteration, 'Boolean', 'rttAverage4');
+
+        let countCycles = (cycles > 1000) ? 1000 : cycles; // Max 1000 cycles.
+        const cycleSkipped = Math.round(countCycles * 0.1); // 10%.
+        let cyclePosition = 0;
+        let oneIterationTime;
+        let totalTestTime = 0;
+        const timeEachIterationArr = [];
+
+        countCycles += cycleSkipped;
+
+        while (cyclePosition < countCycles) {
+          cyclePosition += 1;
+          this.rttStart();
+          codeContainer();
+          oneIterationTime = this.rttFinish();
+          if (cyclePosition > cycleSkipped) {
+            totalTestTime += oneIterationTime;
+            timeEachIterationArr.push(oneIterationTime);
+          }
+        }
+
+        performanceResult = totalTestTime / (countCycles - cycleSkipped); // Average time.
+        const result = [];
+        result.push(...[`Average RTT | ${Common.correctDecimals(performanceResult)} ms`, 'slave']);
+        if (name) {
+          result.push(...[
+            ' | ', 'slave',
+            name, 'master',
+          ]);
+        }
+
+        if (timeEachIteration === true) {
+          timeEachIterationArr.forEach((item, index) => {
+            result.push(...[`${this.appConfig.consoleEOL}  iteration ${index + 1}: ${Common.correctDecimals(item)} ms`, 'slave']);
+          });
+        }
+
+        Common.console.info(...ClientLib.prepareColoring([
+          ...ClientLib.appName,
+          ...result,
+        ]));
+      } catch (e) {
+        Common.errorHandler(e);
+      }
+    }
+
+    return performanceResult;
+  }
 }
 
 module.exports = UduJS;
