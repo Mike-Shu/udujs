@@ -65,6 +65,22 @@ class UduJS {
       this.executionAllowed = true;
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Outputs debugging information in the browser console.
+   * This method returns nothing.
+   * @param {*} value - A value of any type.
+   * @param {string} [comment] - Additional explanatory comment to the displayed value.
+   */
+  log(value, comment = '') {
+    if (this.executionAllowed) {
+      Common.console.info(...ClientLib.prepareColoring([
+        ...ClientLib.appName,
+        ...ClientLib.getDebugMessage(value, comment),
+      ]));
+    }
+  }
 }
 
 module.exports = UduJS;
