@@ -81,6 +81,20 @@ class UduJS {
       ]));
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * Displays debugging information in the list in a pop-up message in the browser window.
+   * This method returns nothing.
+   * @param {*} value - A value of any type.
+   * @param {string} [comment] - Additional explanatory comment to the displayed value.
+   */
+  popup(value, comment = '') {
+    if (this.executionAllowed) {
+      ClientLib.createMsgBox();
+      ClientLib.addMessage(ClientLib.getDebugMessage(value, comment));
+    }
+  }
 }
 
 module.exports = UduJS;
