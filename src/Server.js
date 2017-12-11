@@ -181,6 +181,73 @@ class UduJS {
 
     return performanceResult;
   }
+
+  //--------------------------------------------------
+  /**
+   * Run-time testing (RTT).
+   * Calculates the average execution time of some code (in milliseconds).
+   * Displays the calculated value in the console.
+   * @param {function} codeContainer - Container for the code under test.
+   * @param {int} cycles - Number of cycles to repeat the test (maximum 1000 cycles).
+   * @param {string} [name] - An optional explanatory name for Run-time testing.
+   * @param {boolean} [timeEachIteration] - Display the execution time of each iteration?
+   * Optional argument, disabled by default.
+   * @returns {number} - Returns the computed value.
+   */
+  rttAverage(codeContainer, cycles, name = '', timeEachIteration = false) {
+    let performanceResult = 0;
+
+    if (this.executionAllowed) {
+      try {
+        Common.checkValueType(codeContainer, 'Function', 'rttAverage1');
+        Common.checkValueType(cycles, 'Number', 'rttAverage2');
+        Common.checkValueType(name, 'String', 'rttAverage3');
+        Common.checkValueType(timeEachIteration, 'Boolean', 'rttAverage4');
+
+        let countCycles = (cycles > 1000) ? 1000 : cycles; // Max 1000 cycles.
+        const cycleSkipped = Math.round(countCycles * 0.1); // 10%.
+        let cyclePosition = 0;
+        let oneIterationTime;
+        let totalTestTime = 0;
+        const timeEachIterationArr = [];
+
+        countCycles += cycleSkipped;
+
+        while (cyclePosition < countCycles) {
+          cyclePosition += 1;
+          this.rttStart();
+          codeContainer();
+          oneIterationTime = this.rttFinish();
+          if (cyclePosition > cycleSkipped) {
+            totalTestTime += oneIterationTime;
+            timeEachIterationArr.push(oneIterationTime);
+          }
+        }
+
+        performanceResult = totalTestTime / (countCycles - cycleSkipped); // Average time.
+        let result = this.appConfig.consoleEOL;
+        result += ServerLib.appName +
+          ServerLib.wrapString('Average RTT | ', 'slave') +
+          ServerLib.wrapString(`${Common.correctDecimals(performanceResult)} ms`, 'master');
+        if (name) {
+          result += ServerLib.wrapString(' | ', 'slave') + ServerLib.wrapString(name, 'master');
+        }
+
+        if (timeEachIteration === true) {
+          timeEachIterationArr.forEach((item, index) => {
+            result += this.appConfig.consoleEOL +
+              ServerLib.wrapString(`  iteration ${index + 1}: ${Common.correctDecimals(item)} ms`, 'slave');
+          });
+        }
+
+        Common.console.info(result);
+      } catch (e) {
+        Common.errorHandler(e);
+      }
+    }
+
+    return performanceResult;
+  }
 }
 
 module.exports = UduJS;
