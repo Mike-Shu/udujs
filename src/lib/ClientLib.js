@@ -282,6 +282,24 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string where commas are highlighted.
+   * @param {string} value - The source string.
+   * @returns {string}
+   */
+  highlightCommas(value) {
+    let result = Common.validatingString(value);
+    const commaSymbol = `,${this.serviceApp.consoleEOL}`;
+
+    if (result.indexOf(commaSymbol) !== -1) {
+      const coloredComma = this.wrapString(commaSymbol, this.color.popupScheme.slave);
+      result = result.split(commaSymbol).join(coloredComma);
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
