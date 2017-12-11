@@ -67,6 +67,31 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Which browser?
+   * @returns {string}
+   */
+  get getBrowserSignature() {
+    let result = ''; // By default.
+
+    if (typeof this.runtime.cache.browserSignature === 'string') {
+      result = this.runtime.cache.browserSignature;
+    } else {
+      if (typeof this.userAgent !== 'undefined') {
+        if (this.userAgent.toLowerCase().match(/applewebkit\//)) {
+          result = 'Webkit';
+        }
+        if (this.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) {
+          result = 'Firefox';
+        }
+      }
+      this.runtime.cache.browserSignature = result;
+    }
+
+    return result;
+  }
 }
 
 module.exports = new ClientLib();
