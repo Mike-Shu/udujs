@@ -237,6 +237,18 @@ class Common {
   validatingString(value) {
     return this.getValueType(value) === 'String' ? value : '';
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the indent of the specified length.
+   * Required to visualize the nesting hierarchy of objects.
+   * @param {int} value - block of spaces count.
+   * @returns {string}
+   */
+  setLeftIndent(value) {
+    const indentSize = this.validatingInteger(value);
+    return indentSize > 0 ? this.config.serviceApp.consoleSpace.repeat(indentSize) : '';
+  }
 }
 
 module.exports = new Common();
