@@ -34,6 +34,27 @@ class UduJS {
 
     return uduInstance;
   }
+
+  //--------------------------------------------------
+  /**
+   * The method stops execution of the utility.
+   * This method returns nothing.
+   */
+  stopExec() {
+    this.executionAllowed = false;
+    ServerLib.testPointTime = [];
+    Common.testLevelsPack = [];
+  }
+
+  /**
+   * The method resumes execution of the utility.
+   * This method returns nothing.
+   */
+  resumeExec() {
+    if (Common.config.runtime.run) {
+      this.executionAllowed = true;
+    }
+  }
 }
 
 module.exports = UduJS;
