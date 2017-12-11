@@ -300,6 +300,20 @@ class ClientLib {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Deleting debugging information in a pop-up message.
+   * This method returns nothing.
+   */
+  popupContainerClear() {
+    const container = this.runtime.msgContainer;
+
+    if (container) {
+      container.style.display = 'none';
+      container.innerHTML = '';
+    }
+  }
 }
 
 module.exports = new ClientLib();
