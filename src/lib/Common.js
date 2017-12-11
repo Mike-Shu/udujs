@@ -491,6 +491,17 @@ class Common {
 
     return result;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns a string where the first character is converted to lowercase.
+   * @param {string} value - The source string.
+   * @returns {string}
+   */
+  lowerCaseFirst(value) {
+    const inputValue = this.validatingString(value);
+    return inputValue ? inputValue.replace(/^./, inputValue[0].toLowerCase()) : '';
+  }
 }
 
 module.exports = new Common();
