@@ -106,6 +106,36 @@ class UduJS {
       ClientLib.popupContainerClear();
     }
   }
+
+  //--------------------------------------------------
+  /**
+   * A universal method for displaying debugging information.
+   * Outputs either to the console or to a pop-up message.
+   * The output direction is controlled through the configuration.
+   * By default, the information is displayed in a pop-up message.
+   * This method returns nothing.
+   * @param {*} value - A value of any type.
+   * @param {string} [comment] - Additional explanatory comment to the displayed value.
+   */
+  show(value, comment = '') {
+    if (this.executionAllowed) {
+      switch (Common.config.serviceApp.showOutputDefault) {
+        case 'console':
+          this.log(value, comment);
+          break;
+
+        case 'window':
+          this.popup(value, comment);
+          break;
+
+        case 'file': // TODO: The feature can be implemented in future versions.
+          break;
+
+        default:
+          Common.console.warn(Common.getErrorMessage('show1'));
+      }
+    }
+  }
 }
 
 module.exports = UduJS;
