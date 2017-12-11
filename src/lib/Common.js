@@ -17,6 +17,32 @@ class Common {
      */
     this.console = console;
   }
+
+  //--------------------------------------------------
+  /**
+   * Returns the more accurate type of value.
+   * @param {*} value - A value of any type.
+   * @returns {string}
+   */
+  getValueType(value) {
+    const valueTypePattern = Object.prototype.toString.call(value);
+    const valueType = valueTypePattern.substring(8, valueTypePattern.length - 1);
+    let result = valueType;
+
+    if (valueType === 'Number') {
+      if (Number.isNaN(value)) {
+        result = 'NaN';
+      }
+      if (value === Infinity || value === +Infinity) {
+        result = 'Infinity';
+      }
+      if (value === -Infinity) {
+        result = '-Infinity';
+      }
+    }
+
+    return result;
+  }
 }
 
 module.exports = new Common();
