@@ -26,7 +26,7 @@
     "mocha:Coverage": "nyc mocha test/common/ test/server-side/",
     "karma:Watch": "karma start --auto-watch --reporters mocha --browsers FirefoxDeveloper",
     "karma:Coverage": "cross-env NODE_ENV=test karma start --single-run --reporters mocha,coverage  --browsers Chrome,FirefoxDeveloper",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "cat ./public/coverage/server-side/lcov.info | ./node_modules/.bin/coveralls"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -59,7 +59,7 @@
     "includeAllSources": true,
     "reporter": [
       "text",
-      "lcov"
+      "text-lcov"
     ],
     "report-dir": "./public/coverage/server-side"
   },
