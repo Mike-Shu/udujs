@@ -27,9 +27,10 @@
     "karma:Watch": "karma start --auto-watch --reporters mocha --browsers FirefoxDeveloper",
     "karma:Coverage": "cross-env NODE_ENV=test karma start --single-run --reporters mocha,coverage  --browsers Chrome,FirefoxDeveloper",
     "karma:CI": "cross-env NODE_ENV=test karma start --single-run --reporters coverage  --browsers ChromeNoSandboxHeadless",
-    "CI": "npm run CI:Test && npm run buildClientLib",
+    "CI": "npm run CI:Test && npm run CI:Build",
     "CI:Test": "npm run mocha:Coverage && npm run karma:CI",
-    "CI:Coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "CI:Build": "npm run buildClientLib && rm -rf ./public/js",
+    "CI:Coveralls": "cat ./public/coverage/server-side/lcov.info ./public/coverage/client-side/lcov.info > ./public/coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./public/coverage"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
