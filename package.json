@@ -30,7 +30,10 @@
     "CI": "npm run CI:Test && npm run CI:Build",
     "CI:Test": "npm run mocha:Coverage && npm run karma:CI",
     "CI:Build": "npm run buildClientLib && rm -rf ./public/js",
-    "CI:Coveralls": "cat ./public/coverage/server-side/lcov.info ./public/coverage/client-side/lcov.info > ./public/coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./public/coverage"
+    "CI:pre1": "cat ./public/coverage/server-side/lcov.info ./public/coverage/client-side/lcov.info > ./public/coverage/lcov.info",
+    "CI:pre2": "cat ./public/coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "CI:pre3": "rm -rf ./public/coverage",
+    "CI:Coveralls": "npm run CI:pre1 && npm run CI:pre2 && npm run CI:pre3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
