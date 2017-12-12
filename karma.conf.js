@@ -80,6 +80,16 @@ module.exports = (config) => {
         istanbul: { noCompact: true },
       },
     },
+    customLaunchers: {
+      ChromeNoSandboxHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--no-sandbox',
+          '--headless',
+          '--remote-debugging-port=9222',
+        ]
+      }
+    },
     port: 9876,
     colors: true,
     // LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG

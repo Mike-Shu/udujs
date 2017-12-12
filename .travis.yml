@@ -1,4 +1,7 @@
 language: node_js
 node_js:
   - '8'
-after_success: npm run coveralls
+script:
+  - npm run CI
+after_success:
+  - npm run CI:Coveralls
