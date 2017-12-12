@@ -8,7 +8,7 @@ const Debug = new UduJS({
 const someCode = Misc.doSomeCode;
 
 // View the value of some variable.
-Debug.log(Misc.multiObject);
+Debug.log(Misc.multiObject, 'Friday\'s party.');
 
 // Measurement with control points.
 Debug.rttPoint();
