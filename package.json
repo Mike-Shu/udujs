@@ -25,7 +25,8 @@
     "mocha:Watch": "mocha -w test/common/ test/server-side/",
     "mocha:Coverage": "nyc mocha test/common/ test/server-side/",
     "karma:Watch": "karma start --auto-watch --reporters mocha --browsers FirefoxDeveloper",
-    "karma:Coverage": "cross-env NODE_ENV=test karma start --single-run --reporters mocha,coverage  --browsers Chrome,FirefoxDeveloper"
+    "karma:Coverage": "cross-env NODE_ENV=test karma start --single-run --reporters mocha,coverage  --browsers Chrome,FirefoxDeveloper",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -35,6 +36,7 @@
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.1.1",
     "eslint": "^4.13.0",
     "eslint-config-airbnb-base": "^12.1.0",
