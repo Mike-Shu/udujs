@@ -87,8 +87,8 @@ module.exports = (config) => {
           '--no-sandbox',
           '--headless',
           '--remote-debugging-port=9222',
-        ]
-      }
+        ],
+      },
     },
     port: 9876,
     colors: true,

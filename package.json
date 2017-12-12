@@ -29,7 +29,7 @@
     "karma:CI": "cross-env NODE_ENV=test karma start --single-run --reporters coverage  --browsers ChromeNoSandboxHeadless",
     "CI": "npm run CI:Test && npm run buildClientLib",
     "CI:Test": "npm run mocha:Coverage && npm run karma:CI",
-    "CI:Coveralls": "cat ./public/coverage/server-side/lcov.info | ./node_modules/.bin/coveralls"
+    "CI:Coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
