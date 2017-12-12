@@ -32,7 +32,7 @@
     "CI:Build": "npm run buildClientLib && rm -rf ./public/js",
     "CI:Coveralls": "npm run CI:MergeReports && npm run CI:SendReport && CI:DeleteReports",
     "CI:MergeReports": "cat ./public/coverage/server-side/lcov.info ./public/coverage/client-side/lcov.info > ./public/coverage/lcov.info",
-    "CI:SendReport": "cat ./public/coverage/lcov.info | ./node_modules/.bin/coveralls.js",
+    "CI:SendReport": "cat ./public/coverage/lcov.info | ./node_modules/.bin/coveralls",
     "CI:DeleteReports": "rm -rf ./public/coverage"
   },
   "devDependencies": {
