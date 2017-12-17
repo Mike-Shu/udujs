@@ -2,6 +2,7 @@
 const Path = require('path');
 const { optimize } = require('webpack');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const appPackage = require('./package');
 
 const { UglifyJsPlugin } = optimize;
 const PATH = {
@@ -51,7 +52,7 @@ switch (environment) {
     }));
 
     plugins.push(new BrowserSyncPlugin({
-      proxy: 'http://udu-prod.local/',
+      proxy: 'http://udu.local/',
       host: 'localhost',
       port: 3000,
       files: [
@@ -131,8 +132,8 @@ switch (environment) {
     exportConfig.push({ // Library config
       entry: Path.resolve(PATH.src, 'Client.js'),
       output: {
-        filename: 'udu.js',
-        path: Path.resolve(PATH.public, 'js'),
+        filename: `udujs-${appPackage.version}.min.js`,
+        path: Path.resolve(__dirname, 'compiled'),
         library: 'UduJS',
       },
       module: {

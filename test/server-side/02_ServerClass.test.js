@@ -72,10 +72,10 @@ Utility.run('Server', () => {
           consoleStub.reset();
         });
         It('single-initialization (singleton) + description and version in the console', () => {
-          Utility.storage = config.serviceApp.showOutputDefault;
-          config.serviceApp.showOutputDefault = 'foo';
+          Utility.storage = config.serviceApp.showOutputDirection;
+          config.serviceApp.showOutputDirection = 'foo';
           Debug = new UduJS({
-            showOutputDefault: 'bar',
+            showOutputDirection: 'bar',
           });
           Debug.should.equal(new UduJS(), 'must be a singleton');
           consoleStub = stubs.info;
@@ -86,8 +86,8 @@ Utility.run('Server', () => {
           consoleStub.reset();
         });
         It('custom config check', () => {
-          config.serviceApp.showOutputDefault.should.equal('bar');
-          config.serviceApp.showOutputDefault = Utility.storage;
+          config.serviceApp.showOutputDirection.should.equal('bar');
+          config.serviceApp.showOutputDirection = Utility.storage;
         });
         It('there should be 3 properties', () => {
           Object.keys(Debug).length.should.equal(3);

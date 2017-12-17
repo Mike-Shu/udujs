@@ -529,114 +529,58 @@ Utility.run('ClientLib', () => {
         Before(() => {
           Utility.storage = {
             container: config.runtime.msgContainer,
-            colorization: null,
           };
           ClientLib.createMsgBox();
         });
         After(() => {
           config.runtime.msgContainer = Utility.storage.container;
         });
-        Describe('Before executing the method:', () => {
-          It('the parameter "msgContainer" contains an empty HTMLDivElement.', () => {
-            const container = config.runtime.msgContainer;
-            container.should.is.a('HTMLDivElement', 'msgContainer');
-            container.innerHTML.should.equal('', 'innerHTML');
-          });
+        AfterEach(() => {
+          config.runtime.msgContainer.innerHTML = '';
         });
-        Describe('Coloring allowed:', () => {
-          Before(() => {
-            Utility.storage.colorization = Common.config.serviceApp.allowColorization;
-            Common.config.serviceApp.allowColorization = true;
-          });
-          AfterEach(() => {
-            config.runtime.msgContainer.innerHTML = '';
-          });
-          It(`Input: an even array with valid colors, result: the colored message is added to the container. ${sampleCode('addMessage(["foo", "master", "bar", "slave"]);')}`, () => {
-            const sampleData = [
-              'foo', 'master',
-              'bar', 'slave',
-            ];
-            ClientLib.addMessage(sampleData);
-            const container = config.runtime.msgContainer.firstChild;
-            container.tagName.should.equal('DIV', 'tagName');
-            container.className.should.include('popupMsgUnit', 'className');
-            container.className.should.include('appendAnimation', 'className');
-            container.childNodes.length.should.equal(2, 'childNodes.length');
-            container.childNodes[0].tagName.should.equal('SPAN', 'tagName');
-            container.childNodes[0].innerHTML.should.include('foo', 'innerHTML');
-            container.childNodes[1].tagName.should.equal('SPAN', 'tagName');
-            container.childNodes[1].innerHTML.should.include('bar', 'innerHTML');
-          });
-          It(`Input: an even array with invalid colors, result: a message without a coloring is added to the container. ${sampleCode('addMessage(["foo", "invalid", "bar", "wrong"]);')}`, () => {
-            const sampleData = [
-              'foo', 'invalid',
-              'bar', 'wrong',
-            ];
-            ClientLib.addMessage(sampleData);
-            config.runtime.msgContainer.firstChild.innerHTML.should.equal('foobar', 'innerHTML');
-          });
-          It(`Input: an odd array with valid colors, result: the message will not be added. ${sampleCode('addMessage(["foo", "master", "bar"]);')}`, () => {
-            const sampleData = [
-              'foo', 'master', 'bar',
-            ];
-            ClientLib.addMessage(sampleData);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
-          It(`Input: an empty array, result: the message will not be added. ${sampleCode('addMessage([]);')}`, () => {
-            ClientLib.addMessage([]);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
-          It(`Input: not an array, result: the message will not be added. ${sampleCode('addMessage(true);')}`, () => {
-            ClientLib.addMessage(true);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
+        It('Before executing the method the parameter "msgContainer" contains an empty HTMLDivElement.', () => {
+          const container = config.runtime.msgContainer;
+          container.should.is.a('HTMLDivElement', 'msgContainer');
+          container.innerHTML.should.equal('', 'innerHTML');
         });
-        Describe('Coloring is disabled:', () => {
-          Before(() => {
-            Common.config.serviceApp.allowColorization = false;
-          });
-          After(() => {
-            Common.config.serviceApp.allowColorization = Utility.storage.colorization;
-          });
-          AfterEach(() => {
-            config.runtime.msgContainer.innerHTML = '';
-          });
-          It(`Input: an even array with valid colors, result: a message without a coloring is added to the container. ${sampleCode('addMessage(["foo", "master", "bar", "slave"]);')}`, () => {
-            const sampleData = [
-              'foo', 'master',
-              'bar', 'slave',
-            ];
-            ClientLib.addMessage(sampleData);
-            const container = config.runtime.msgContainer.firstChild;
-            container.tagName.should.equal('DIV', 'tagName');
-            container.className.should.include('popupMsgUnit', 'className');
-            container.className.should.include('appendAnimation', 'className');
-            container.childNodes.length.should.equal(1, 'childNodes.length');
-            container.innerHTML.should.equal('foobar', 'innerHTML');
-          });
-          It(`Input: an even array with invalid colors, result: a message without a coloring is added to the container. ${sampleCode('addMessage(["foo", "invalid", "bar", "wrong"]);')}`, () => {
-            const sampleData = [
-              'foo', 'invalid',
-              'bar', 'wrong',
-            ];
-            ClientLib.addMessage(sampleData);
-            config.runtime.msgContainer.firstChild.innerHTML.should.equal('foobar', 'innerHTML');
-          });
-          It(`Input: an odd array with valid colors, result: the message will not be added. ${sampleCode('addMessage(["foo", "master", "bar"]);')}`, () => {
-            const sampleData = [
-              'foo', 'master', 'bar',
-            ];
-            ClientLib.addMessage(sampleData);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
-          It(`Input: an empty array, result: the message will not be added. ${sampleCode('addMessage([]);')}`, () => {
-            ClientLib.addMessage([]);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
-          It(`Input: not an array, result: the message will not be added. ${sampleCode('addMessage(true);')}`, () => {
-            ClientLib.addMessage(true);
-            config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
-          });
+        It(`Input: an even array with valid colors, result: the colored message is added to the container. ${sampleCode('addMessage(["foo", "master", "bar", "slave"]);')}`, () => {
+          const sampleData = [
+            'foo', 'master',
+            'bar', 'slave',
+          ];
+          ClientLib.addMessage(sampleData);
+          const container = config.runtime.msgContainer.firstChild;
+          container.tagName.should.equal('DIV', 'tagName');
+          container.className.should.include('popupMsgUnit', 'className');
+          container.className.should.include('appendAnimation', 'className');
+          container.childNodes.length.should.equal(2, 'childNodes.length');
+          container.childNodes[0].tagName.should.equal('SPAN', 'tagName');
+          container.childNodes[0].innerHTML.should.include('foo', 'innerHTML');
+          container.childNodes[1].tagName.should.equal('SPAN', 'tagName');
+          container.childNodes[1].innerHTML.should.include('bar', 'innerHTML');
+        });
+        It(`Input: an even array with invalid colors, result: a message without a coloring is added to the container. ${sampleCode('addMessage(["foo", "invalid", "bar", "wrong"]);')}`, () => {
+          const sampleData = [
+            'foo', 'invalid',
+            'bar', 'wrong',
+          ];
+          ClientLib.addMessage(sampleData);
+          config.runtime.msgContainer.firstChild.innerHTML.should.equal('foobar', 'innerHTML');
+        });
+        It(`Input: an odd array with valid colors, result: the message will not be added. ${sampleCode('addMessage(["foo", "master", "bar"]);')}`, () => {
+          const sampleData = [
+            'foo', 'master', 'bar',
+          ];
+          ClientLib.addMessage(sampleData);
+          config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
+        });
+        It(`Input: an empty array, result: the message will not be added. ${sampleCode('addMessage([]);')}`, () => {
+          ClientLib.addMessage([]);
+          config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
+        });
+        It(`Input: not an array, result: the message will not be added. ${sampleCode('addMessage(true);')}`, () => {
+          ClientLib.addMessage(true);
+          config.runtime.msgContainer.innerHTML.should.equal('', 'innerHTML');
         });
       });
     });

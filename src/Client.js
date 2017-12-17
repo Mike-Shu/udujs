@@ -7,7 +7,7 @@ let uduInstance = null; // Singleton.
 /**
  * This module implements public methods for debugging code only on the client side.
  */
-class UduJS {
+class Client {
   constructor(customSettingsObj) {
     if (Common.getValueType(ClientLib.windowObj) === 'Window') { // Is the code running in the browser?
       if (!uduInstance) {
@@ -68,7 +68,7 @@ class UduJS {
 
   //--------------------------------------------------
   /**
-   * Outputs debugging information in the browser console.
+   * Outputs debugging information to the browser console.
    * This method returns nothing.
    * @param {*} value - A value of any type.
    * @param {string} [comment] - Additional explanatory comment to the displayed value.
@@ -98,7 +98,7 @@ class UduJS {
 
   //--------------------------------------------------
   /**
-   * Removes debugging information from a pop-up message.
+   * Clears the list in a pop-up message.
    * This method returns nothing.
    */
   popupReset() {
@@ -111,7 +111,7 @@ class UduJS {
   /**
    * A universal method for displaying debugging information.
    * Outputs either to the console or to a pop-up message.
-   * The output direction is controlled through the configuration.
+   * The output direction is controlled via the configuration (parameter "showOutputDirection").
    * By default, the information is displayed in a pop-up message.
    * This method returns nothing.
    * @param {*} value - A value of any type.
@@ -119,7 +119,7 @@ class UduJS {
    */
   show(value, comment = '') {
     if (this.executionAllowed) {
-      switch (Common.config.serviceApp.showOutputDefault) {
+      switch (Common.config.serviceApp.showOutputDirection) {
         case 'console':
           this.log(value, comment);
           break;
@@ -343,4 +343,4 @@ class UduJS {
   }
 }
 
-module.exports = UduJS;
+module.exports = Client;

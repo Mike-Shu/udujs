@@ -7,7 +7,7 @@ let uduInstance = null; // Singleton.
 /**
  * This module implements public methods for debugging code only on the server side.
  */
-class UduJS {
+class Server {
   constructor(customSettingsObj) {
     if (ServerLib.hrtime) { // Does the server support the "Process.hrtime" object?
       if (!uduInstance) {
@@ -58,7 +58,7 @@ class UduJS {
 
   //--------------------------------------------------
   /**
-   * Outputs debugging information in the console.
+   * Outputs debugging information to the console.
    * This method returns nothing.
    * @param {*} value - A value of any type.
    * @param {string} [comment] - Additional explanatory comment to the displayed value.
@@ -250,4 +250,4 @@ class UduJS {
   }
 }
 
-module.exports = UduJS;
+module.exports = Server;

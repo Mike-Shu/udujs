@@ -1,12 +1,12 @@
-const Utility = require('./misc');
+const Misc = require('./misc');
 
 const Debug = new UduJS({
   maxWidth: 'auto',
   showClearTitle: false,
 });
-const allTypes = Utility.allTypesObject;
-const someCode = Utility.doSomeCode;
-const party = Utility.multiObject;
+const allTypes = Misc.allTypesObject;
+const someCode = Misc.doSomeCode;
+const party = Misc.multiObject;
 
 // View the value of some variable.
 Debug.log(party, 'Friday\'s party.');

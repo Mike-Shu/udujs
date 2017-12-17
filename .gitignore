@@ -5,3 +5,4 @@ public/coverage
 public/js
 npm-debug.log
 *.log
+/docs/resources/psd/

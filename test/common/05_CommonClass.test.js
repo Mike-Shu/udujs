@@ -448,7 +448,7 @@ Utility.run('Common', () => {
     testManagement.run('setLeftIndent', () => {
       Describe(Utility.method('method "setLeftIndent()":'), () => {
         It('Input: 3 (set threefold indent), returns: string consisting of three indents.', () => {
-          Common.setLeftIndent(3).should.equal(config.serviceApp.consoleSpace.repeat(3));
+          Common.setLeftIndent(3).should.equal(config.serviceApp.tabChar.repeat(3));
         });
         It('Input: -3, returns: empty string value.', () => {
           Common.setLeftIndent(-3).should.equal('');

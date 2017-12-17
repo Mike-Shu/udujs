@@ -54,7 +54,7 @@ Utility.run('Client', () => {
             run: config.runtime.run,
             window: ClientLib.windowObj,
             performance: ClientLib.performanceObj,
-            showOutput: config.serviceApp.showOutputDefault,
+            showOutput: config.serviceApp.showOutputDirection,
           };
           stubs.reset();
         });
@@ -62,7 +62,7 @@ Utility.run('Client', () => {
           config.runtime.run = Utility.storage.run;
           ClientLib.windowObj = Utility.storage.window;
           ClientLib.performanceObj = Utility.storage.performance;
-          config.serviceApp.showOutputDefault = Utility.storage.showOutput;
+          config.serviceApp.showOutputDirection = Utility.storage.showOutput;
         });
         BeforeEach(() => {
           consoleStub = stubs.info;
@@ -108,12 +108,12 @@ Utility.run('Client', () => {
         });
         Describe('normal functionality', () => {
           It('description and version in the console & single-initialization + custom config check (singleton)', () => {
-            config.serviceApp.showOutputDefault = 'foo';
+            config.serviceApp.showOutputDirection = 'foo';
             Debug = new UduJS({
-              showOutputDefault: 'bar',
+              showOutputDirection: 'bar',
             });
             Debug.should.equal(new UduJS(), 'must be a singleton');
-            config.serviceApp.showOutputDefault.should.equal('bar');
+            config.serviceApp.showOutputDirection.should.equal('bar');
             consoleStub.calledOnce.should.equal(true, 'called once');
             const consoleArgs = consoleStub.args[0][0];
             consoleArgs.should.include(config.serviceApp.appDescription);
@@ -340,14 +340,14 @@ Utility.run('Client', () => {
           Utility.storage = {
             allowed: Debug.executionAllowed,
             container: config.runtime.msgContainer,
-            output: config.serviceApp.showOutputDefault,
+            output: config.serviceApp.showOutputDirection,
           };
           stubs.reset();
         });
         After(() => {
           Debug.executionAllowed = Utility.storage.allowed;
           config.runtime.msgContainer = Utility.storage.container;
-          config.runtime.showOutputDefault = Utility.storage.output;
+          config.runtime.showOutputDirection = Utility.storage.output;
         });
         Describe('Default output is "window":', () => {
           BeforeEach(() => {
@@ -355,7 +355,7 @@ Utility.run('Client', () => {
             document.body.innerHTML = '';
           });
           It(`Input: "foo", displays: message in pop-up window. ${sampleCode('show("foo");')}`, () => {
-            config.serviceApp.showOutputDefault = 'window';
+            config.serviceApp.showOutputDirection = 'window';
             document.getElementsByTagName('DIV').length.should.equal(0, 'DIV count before');
             Debug.show('foo');
             const result = document.getElementsByTagName('DIV');
@@ -377,7 +377,7 @@ Utility.run('Client', () => {
             consoleStub.reset();
           });
           It(`Input: "foo", displays: message in the console. ${sampleCode('show("foo");')}`, () => {
-            config.serviceApp.showOutputDefault = 'console';
+            config.serviceApp.showOutputDirection = 'console';
             Debug.executionAllowed = true;
             Debug.show('foo');
             consoleStub.calledOnce.should.equal(true, 'called once');
@@ -395,12 +395,12 @@ Utility.run('Client', () => {
         });
         Describe('Other variants:', () => {
           It('Default output is "file", input: "foo", displays: nothing.', () => {
-            config.serviceApp.showOutputDefault = 'file';
+            config.serviceApp.showOutputDirection = 'file';
             Debug.executionAllowed = true;
             Debug.show('foo');
           });
           It('Default output is "undefined", input: "foo", displays: error message in the console.', () => {
-            config.serviceApp.showOutputDefault = 'undefined';
+            config.serviceApp.showOutputDirection = 'undefined';
             Debug.executionAllowed = true;
             Debug.show('foo');
             consoleStub = stubs.warn;

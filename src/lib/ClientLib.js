@@ -329,30 +329,30 @@ class ClientLib {
     message.className = 'popupMsgUnit appendAnimation';
 
     if (Common.getValueType(value) === 'Array' && (value.length / 2) === Math.round(value.length / 2)) {
-      if (this.serviceApp.allowColorization === true) {
-        const textsArr = [];
-        const colorsArr = [];
-        value.forEach((v, i) => {
-          if ((i / 2) === Math.round(i / 2)) {
-            textsArr.push(v);
-          } else {
-            colorsArr.push(this.color.popupScheme[v]);
-          }
-        });
-        textsArr.forEach((text, i) => {
-          result += this.wrapString(text, colorsArr[i]);
-        });
-        result = this.highlightAttentions(result);
-        result = this.highlightCommas(result);
-      } else {
-        const textsArr = [];
-        value.forEach((v, i) => {
-          if ((i / 2) === Math.round(i / 2)) {
-            textsArr.push(v);
-          }
-        });
-        result += textsArr.join('');
-      }
+      // if (this.serviceApp.allowColorization === true) {
+      const textsArr = [];
+      const colorsArr = [];
+      value.forEach((v, i) => {
+        if ((i / 2) === Math.round(i / 2)) {
+          textsArr.push(v);
+        } else {
+          colorsArr.push(this.color.popupScheme[v]);
+        }
+      });
+      textsArr.forEach((text, i) => {
+        result += this.wrapString(text, colorsArr[i]);
+      });
+      result = this.highlightAttentions(result);
+      result = this.highlightCommas(result);
+      // } else {
+      //   const textsArr = [];
+      //   value.forEach((v, i) => {
+      //     if ((i / 2) === Math.round(i / 2)) {
+      //       textsArr.push(v);
+      //     }
+      //   });
+      //   result += textsArr.join('');
+      // }
     }
     if (result) {
       message.innerHTML = result;

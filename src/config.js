@@ -1,7 +1,7 @@
 module.exports = {
   popupMsg: {
-    fontSize: '1em', // Font size of pop-up message.
-    showClearTitle: true, // Pop-up message "Click to clear".
+    fontSize: '1em', // The font size in the pop-up message.
+    showClearTitle: true, // The "Click to clear" tooltip on the pop-up message.
     horizontalPosition: 'left', // Horizontal position of pop-up message: "left" or "right".
     verticalPosition: 'bottom', // Vertical position of pop-up message: "top" or "bottom".
     maxWidth: 500, // Maximum width of pop-up message.
@@ -11,9 +11,9 @@ module.exports = {
     bottomIndent: 22, // An indent at the bottom of the browser for the status line to be visible.
   },
   serviceApp: {
-    showOutputDefault: 'window', // Default output for "Show" method: "window" or "console".
-    consoleEOL: '\n', // Newline character for console message. "\r\n" - Windows-style, "\n" - Linux-style.
-    consoleSpace: '  ', // One block of spaces: for console messages.
+    showOutputDirection: 'window', // Output direction for the "show()" method: "window" or "console".
+    consoleEOL: '\n', // A newline character for messages in the console. Recommended values: "\r\n" - Windows-style, "\n" - Linux-style.
+    tabChar: '  ', // The size of one tab character for formatting messages.
     appName: 'UduJS',
     appDescription: 'A simple universal debugging utility for JavaScript code.',
     appVersion: '1.0.0',
@@ -23,7 +23,7 @@ module.exports = {
     allowColorization: true, // Allow coloring of the displayed information.
   },
   performance: {
-    decimalPlaces: 2, // Decimal places in the output of the performance methods. Type zero to hide.
+    decimalPlaces: 2, // The number of decimal places to display the execution time in RTT-methods.
   },
   runtime: {
     run: true, // Allow the utility to run, or not.

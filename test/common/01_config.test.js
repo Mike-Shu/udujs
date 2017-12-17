@@ -31,9 +31,9 @@ Utility.run('config', () => {
         'bottomIndent',
       ],
       serviceApp: [
-        'showOutputDefault',
+        'showOutputDirection',
         'consoleEOL',
-        'consoleSpace',
+        'tabChar',
         'appName',
         'appDescription',
         'appVersion',

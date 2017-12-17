@@ -1,5 +1,5 @@
 // Dependencies.
-const UduJS = require('../src');
+const UduJS = require('../src/Server');
 const Misc = require('./misc');
 
 const Debug = new UduJS({
@@ -24,3 +24,13 @@ Debug.rttFinish();
 
 // A single measurement with the calculation of the average result.
 Debug.rttAverage(someCode, 10, 'The average execution time of some code.', true);
+
+Debug.rttStart('Главный уровень.', 0);
+someCode();
+Debug.rttStart('Вложенный уровень.', 1);
+someCode();
+Debug.rttFinish(1);
+Debug.rttStart('Вложенный уровень.', 1);
+someCode();
+Debug.rttFinish(1);
+Debug.rttFinish(0);

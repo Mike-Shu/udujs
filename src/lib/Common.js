@@ -1,6 +1,6 @@
 // Dependencies.
 const config = require('../config');
-const colorSchemes = require('./colorSchemes');
+const colorSchemes = require('./colorScheme');
 const errors = require('./errors');
 
 /**
@@ -59,8 +59,9 @@ class Common {
         verticalPosition: ['popupMsg', 'String'],
         maxWidth: ['popupMsg', 'Number|String'],
         maxHeight: ['popupMsg', 'Number'],
-        showOutputDefault: ['serviceApp', 'String'],
+        showOutputDirection: ['serviceApp', 'String'],
         consoleEOL: ['serviceApp', 'String'],
+        tabChar: ['serviceApp', 'String'],
         consoleColorScheme: ['serviceApp', 'String'],
         popupColorScheme: ['serviceApp', 'String'],
         serverColorScheme: ['serviceApp', 'String'],
@@ -247,7 +248,7 @@ class Common {
    */
   setLeftIndent(value) {
     const indentSize = this.validatingInteger(value);
-    return indentSize > 0 ? this.config.serviceApp.consoleSpace.repeat(indentSize) : '';
+    return indentSize > 0 ? this.config.serviceApp.tabChar.repeat(indentSize) : '';
   }
 
   //--------------------------------------------------
