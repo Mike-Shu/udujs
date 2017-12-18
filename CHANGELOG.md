@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.4"></a>
+## 1.0.4 (2017-12-18)
+
+
+### Bug Fixes
+
+* **lib:** updated version number in the NPM package
+
+
+
 <a name="1.0.3"></a>
 ## 1.0.3 (2017-12-18)
 

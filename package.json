@@ -2,7 +2,7 @@
   "name": "udujs",
   "title": "UduJS",
   "description": "A simple universal debugging utility for JavaScript code.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Mike Shu <heliax44@gmail.com>",
   "license": "MIT",
   "keywords": [
