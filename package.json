@@ -78,7 +78,9 @@
     "report-dir": "./public/coverage/server-side"
   },
   "files": [
-    "src"
+    "src",
+    "Client.js",
+    "Server.js"
   ],
   "main": "src/index.js"
 }
