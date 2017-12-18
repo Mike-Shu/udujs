@@ -61,7 +61,7 @@ module.exports = {
 };
 ```
 
-Path to the color scheme file: [node_modules/udujs/lib/colorScheme.js](../../src/lib/colorScheme.js)
+Path to the color scheme file: [node_modules/udujs/lib/colorScheme.js](../../lib/colorScheme.js)
 
 ## Custom profile
 

@@ -3,11 +3,11 @@ const mocha = require('mocha');
 require('chai').should();
 
 // Module for testing and helper set.
-const UduJS = require('../../src/Client');
-const ClientLib = require('../../src/lib/ClientLib');
-const Common = require('../../src/lib/Common');
-const config = require('../../src/config');
-const errors = require('../../src/lib/errors');
+const UduJS = require('../../Client');
+const ClientLib = require('../../lib/ClientLib');
+const Common = require('../../lib/Common');
+const config = require('../../lib/config');
+const errors = require('../../lib/errors');
 const Utility = require('../misc/utility');
 
 // Tools.

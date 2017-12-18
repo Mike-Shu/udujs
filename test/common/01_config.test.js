@@ -3,7 +3,7 @@ const mocha = require('mocha');
 const should = require('chai').should();
 
 // Module for testing and helper set.
-const config = require('../../src/config');
+const config = require('../../lib/config');
 const Utility = require('../misc/utility');
 
 // Tools.

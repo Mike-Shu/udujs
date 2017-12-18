@@ -2,11 +2,11 @@
 const mocha = require('mocha');
 
 // Module for testing and helper set.
-const UduJS = require('../../src/Server');
-const ServerLib = require('../../src/lib/ServerLib');
-const Common = require('../../src/lib/Common');
-const config = require('../../src/config');
-const errors = require('../../src/lib/errors');
+const UduJS = require('../../Server');
+const ServerLib = require('../../lib/ServerLib');
+const Common = require('../../lib/Common');
+const config = require('../../lib/config');
+const errors = require('../../lib/errors');
 const Utility = require('../misc/utility');
 
 // Tools.

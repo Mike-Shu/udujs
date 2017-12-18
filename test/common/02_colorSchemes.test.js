@@ -2,7 +2,7 @@
 const mocha = require('mocha');
 
 // Module for testing and helper set.
-const colorSchemes = require('../../src/lib/colorScheme');
+const colorSchemes = require('../../lib/colorScheme');
 const Utility = require('../misc/utility');
 
 // Tools.

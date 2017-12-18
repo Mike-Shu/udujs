@@ -2,7 +2,7 @@
 const mocha = require('mocha');
 
 // Module for testing and helper set.
-const errors = require('../../src/lib/errors');
+const errors = require('../../lib/errors');
 const Utility = require('../misc/utility');
 
 // Tools.

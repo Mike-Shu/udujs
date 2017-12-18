@@ -61,7 +61,7 @@ module.exports = {
 };
 ```
 
-Путь к файлу цветовой схемы: [node_modules/udujs/lib/colorScheme.js](../../src/lib/colorScheme.js)
+Путь к файлу цветовой схемы: [node_modules/udujs/lib/colorScheme.js](../../lib/colorScheme.js)
 
 ## Пользовательский профиль
 

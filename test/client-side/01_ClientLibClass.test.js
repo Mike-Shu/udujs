@@ -3,9 +3,9 @@ const mocha = require('mocha');
 const should = require('chai').should();
 
 // Module for testing and helper set.
-const ClientLib = require('../../src/lib/ClientLib');
-const Common = require('../../src/lib/Common');
-const config = require('../../src/config');
+const ClientLib = require('../../lib/ClientLib');
+const Common = require('../../lib/Common');
+const config = require('../../lib/config');
 const Utility = require('../misc/utility');
 
 // Tools.

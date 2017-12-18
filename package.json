@@ -27,7 +27,7 @@
     "CI": "npm run CI:Test && npm run CI:Build",
     "CI:Test": "npm run mocha:Coverage && npm run karma:CI",
     "CI:Build": "npm run buildClientLib",
-    "CI:Coveralls": "npm run CI:MergeReports && npm run CI:SendReport && CI:DeleteReports",
+    "CI:Coveralls": "npm run CI:MergeReports && npm run CI:SendReport && npm run CI:DeleteReports",
     "CI:MergeReports": "cat ./public/coverage/server-side/lcov.info ./public/coverage/client-side/lcov.info > ./public/coverage/lcov.info",
     "CI:SendReport": "cat ./public/coverage/lcov.info | ./node_modules/.bin/coveralls",
     "CI:DeleteReports": "rm -rf ./public/coverage",
@@ -78,9 +78,9 @@
     "report-dir": "./public/coverage/server-side"
   },
   "files": [
-    "src",
+    "lib",
     "Client.js",
     "Server.js"
   ],
-  "main": "src/index.js"
+  "main": "index.js"
 }
