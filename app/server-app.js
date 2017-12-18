@@ -1,5 +1,5 @@
 // Dependencies.
-const UduJS = require('../src/Server');
+const UduJS = require('../Server');
 const Misc = require('./misc');
 
 const Debug = new UduJS({
