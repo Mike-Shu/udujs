@@ -8,7 +8,6 @@ const { UglifyJsPlugin } = optimize;
 const PATH = {
   context: Path.resolve(__dirname),
   app: Path.resolve(__dirname, 'app'),
-  src: Path.resolve(__dirname, 'src'),
   public: Path.resolve(__dirname, 'public'),
   test: Path.resolve(__dirname, 'test'),
 };
@@ -63,7 +62,7 @@ switch (environment) {
     }));
 
     exportConfig.push({ // Library config
-      entry: Path.resolve(PATH.src, 'Client.js'),
+      entry: Path.resolve(PATH.context, 'Client.js'),
       output: {
         filename: 'udu.js',
         path: Path.resolve(PATH.public, 'js'),
@@ -130,7 +129,7 @@ switch (environment) {
     }));
 
     exportConfig.push({ // Library config
-      entry: Path.resolve(PATH.src, 'Client.js'),
+      entry: Path.resolve(PATH.context, 'Client.js'),
       output: {
         filename: `udujs-${appPackage.version}.min.js`,
         path: Path.resolve(__dirname, 'compiled'),
