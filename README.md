@@ -11,7 +11,7 @@ A simple universal debugging utility for JavaScript code. Designed for Node.js a
 
 **Make debugging more understandable and simple.**
 
-<img src="./docs/resources/intro.png" width="820" height="457"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/intro.png" width="820" height="457"/>
 
 ## Support
 
@@ -106,7 +106,7 @@ const Debug = new UduJS({
 * [.resumeExec()](#resumeExec)
 
 <a name="log"></a>
-#### .log(value, [comment]) [API](./docs/en/general-api.md#log)
+#### .log(value, [comment]) [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#log)
 
 Outputs debugging information to the console.
 This method returns nothing.
@@ -117,10 +117,10 @@ Debug.log(someVariable);
 
 Result ([example code with common methods]):
 
-<img src="./docs/resources/sample1.png" width="526" height="73"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample1.png" width="526" height="73"/>
 
 <a name="rttPoint"></a>
-#### .rttPoint([name]) ⇒ <code>number</code> [API](./docs/en/general-api.md#rttPoint)
+#### .rttPoint([name]) ⇒ <code>number</code> [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#rttPoint)
 
 Run-time testing (RTT).
 Sets the control point in the code.
@@ -138,17 +138,17 @@ let lastPointResult = Debug.rttPoint('More code.');
 
 Result ([example code with common methods]):
 
-<img src="./docs/resources/sample2.png" width="526" height="91"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample2.png" width="526" height="91"/>
 
 <a name="rttStart"></a>
-#### .rttStart([name], [levelIndex]) [API](./docs/en/general-api.md#rttStart)
+#### .rttStart([name], [levelIndex]) [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#rttStart)
 
 Run-time testing (RTT).
 The starting point for computing the execution time of some code.
 This method returns nothing.
 
 <a name="rttFinish"></a>
-#### .rttFinish([levelIndex]) ⇒ <code>number</code> [API](./docs/en/general-api.md#rttFinish)
+#### .rttFinish([levelIndex]) ⇒ <code>number</code> [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#rttFinish)
 
 Run-time testing (RTT).
 The end point for the <code>rttStart()</code> method.
@@ -165,10 +165,10 @@ let rttResult = Debug.rttFinish();
 
 Result ([example code with common methods]):
 
-<img src="./docs/resources/sample3.png" width="526" height="53"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample3.png" width="526" height="53"/>
 
 <a name="rttAverage"></a>
-#### .rttAverage(codeContainer, cycles, [name], [timeEachIteration]) ⇒ <code>number</code> [API](./docs/en/general-api.md#rttAverage)
+#### .rttAverage(codeContainer, cycles, [name], [timeEachIteration]) ⇒ <code>number</code> [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#rttAverage)
 
 Run-time testing (RTT).
 Calculates the average execution time of some code (_in milliseconds_).
@@ -182,16 +182,16 @@ let averageResult = Debug.rttAverage(someCode, 3, 'The average execution time of
 
 Result ([example code with common methods]):
 
-<img src="./docs/resources/sample4.png" width="526" height="107"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample4.png" width="526" height="107"/>
 
 <a name="stopExec"></a>
-#### .stopExec() [API](./docs/en/general-api.md#stopExec)
+#### .stopExec() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#stopExec)
 
 The method stops execution of the utility.
 This method returns nothing.
 
 <a name="resumeExec"></a>
-#### .resumeExec() [API](./docs/en/general-api.md#resumeExec)
+#### .resumeExec() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/general-api.md#resumeExec)
 
 The method resumes execution of the utility.
 This method returns nothing.
@@ -213,7 +213,7 @@ Debug.resumeExec();
 * [.observer()](#observer)
 
 <a name="popup"></a>
-#### .popup() [API](./docs/en/client-api.md#popup)
+#### .popup() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/client-api.md#popup)
 
 Displays debugging information in the list in a pop-up message in the browser window.
 This method returns nothing.
@@ -224,10 +224,10 @@ Debug.popup(someVariable);
 
 Result ([example code with client methods]):
 
-<img src="./docs/resources/sample5.png" width="526" height="108"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample5.png" width="526" height="108"/>
 
 <a name="popupReset"></a>
-#### .popupReset() [API](./docs/en/client-api.md#popupReset)
+#### .popupReset() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/client-api.md#popupReset)
 
 Clears the list in a pop-up message.
 This method returns nothing.
@@ -237,10 +237,10 @@ Debug.popupReset();
 
 Result ([example code with client methods]):
 
-<img src="./docs/resources/sample6.png" width="526" height="108"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample6.png" width="526" height="108"/>
 
 <a name="show"></a>
-#### .show() [API](./docs/en/client-api.md#show)
+#### .show() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/client-api.md#show)
 
 A universal method for displaying debugging information.
 Outputs either to the console or to a pop-up message.
@@ -254,10 +254,10 @@ Debug.show(`Using the "show()" method: ${someVariable}`);
 
 Result ([example code with client methods]):
 
-<img src="./docs/resources/sample7.png" width="526" height="108"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample7.png" width="526" height="108"/>
 
 <a name="observer"></a>
-#### .observer() [API](./docs/en/client-api.md#observer)
+#### .observer() [API](https://github.com/Heliax44/udujs/blob/master/docs/en/client-api.md#observer)
 
 Displays debug information in a fixed field in a pop-up message.
 This method returns nothing.
@@ -269,12 +269,12 @@ Debug.observer(`Some status: ${someStatus}`);
 
 Result ([example code with client methods]):
 
-<img src="./docs/resources/sample8.png" width="526" height="139"/>
+<img src="https://raw.githubusercontent.com/Heliax44/udujs/master/docs/resources/sample8.png" width="526" height="139"/>
 
-[Русская версия здесь.]:./docs/ru/index.md "Документация на русском языке"
-[compiled]:/compiled
-[custom settings]:./docs/en/custom-settings.md
-[example code with common methods]:./app/server-app.js
-[example code with client methods]:./app/client-app.js
-[showOutputDirection]:./docs/en/custom-settings.md#showOutputDirection
+[Русская версия здесь.]:https://github.com/Heliax44/udujs/blob/master/docs/ru/index.md "Документация на русском языке"
+[compiled]:https://github.com/Heliax44/udujs/tree/master/compiled
+[custom settings]:https://github.com/Heliax44/udujs/blob/master/docs/en/custom-settings.md
+[example code with common methods]:https://github.com/Heliax44/udujs/blob/master/app/server-app.js
+[example code with client methods]:https://github.com/Heliax44/udujs/blob/master/app/client-app.js
+[showOutputDirection]:https://github.com/Heliax44/udujs/blob/master/docs/en/custom-settings.md#showOutputDirection
 [issue tracker]:https://github.com/Heliax44/udujs/issues

@@ -119,7 +119,7 @@ const Debug = new UduJS({
 ## allowColorization <code>логический | только клиент</code>
 
 Разрешить окраску отображаемой информации.
-Этот параметр применим только к консоли в браузере.
+Этот параметр применим **только к консоли в браузере**.
 Выключите его, если браузер неправильно окрашивает текст в консоли.
 Допустимые значения: <code>true</code> или <code>false</code>.
 По умолчанию установлено значение <code>true</code>.
@@ -132,7 +132,7 @@ const Debug = new UduJS({
 <a name="consoleColorScheme"></a>
 ## consoleColorScheme <code>строка | только клиент</code>
 
-Цветовая схема для консоли в браузере.
+[Цветовая схема] для консоли в браузере.
 Допустимые значения: <code>dark</code>, <code>bright</code> или <code>custom</code>.
 По умолчанию установлено значение <code>dark</code>.
 ```javascript
@@ -144,7 +144,7 @@ const Debug = new UduJS({
 <a name="popupColorScheme"></a>
 ## popupColorScheme <code>строка | только клиент</code>
 
-Цветовая схема для всплывающего сообщения в браузере.
+[Цветовая схема] для всплывающего сообщения в браузере.
 Допустимые значения: <code>dark</code>, <code>bright</code> или <code>custom</code>.
 По умолчанию установлено значение <code>bright</code>.
 ```javascript
@@ -156,7 +156,7 @@ const Debug = new UduJS({
 <a name="serverColorScheme"></a>
 ## serverColorScheme <code>строка | только сервер</code>
 
-Цветовая схема для консоли на сервере.
+[Цветовая схема] для консоли на сервере.
 Допустимые значения: <code>dark</code>, <code>bright</code> или <code>custom</code>.
 По умолчанию установлено значение <code>dark</code>.
 ```javascript
@@ -217,3 +217,4 @@ const Debug = new UduJS({
 ```
 
 [The English version is here.]:../en/custom-settings.md "Custom settings"
+[Цветовая схема]:./color-scheme.md
