@@ -119,7 +119,7 @@ const Debug = new UduJS({
 ## allowColorization <code>boolean | client only</code>
 
 Allow coloring of the displayed information.
-This parameter is applicable only to the console on the browser.
+This parameter is applicable **only to the console on the browser**.
 Turn it off if the browser does not correctly color the text in the console.
 Valid values are <code>true</code> or <code>false</code>.
 The default value is <code>true</code>.
@@ -132,7 +132,7 @@ const Debug = new UduJS({
 <a name="consoleColorScheme"></a>
 ## consoleColorScheme <code>string | client only</code>
 
-The color scheme for the console in the browser.
+The [color scheme] for the console in the browser.
 Valid values are <code>dark</code>, <code>bright</code> or <code>custom</code>.
 The default value is <code>dark</code>.
 ```javascript
@@ -144,7 +144,7 @@ const Debug = new UduJS({
 <a name="popupColorScheme"></a>
 ## popupColorScheme <code>string | client only</code>
 
-The color scheme for a pop-up message in the browser.
+The [color scheme] for a pop-up message in the browser.
 Valid values are <code>dark</code>, <code>bright</code> or <code>custom</code>.
 The default value is <code>bright</code>.
 ```javascript
@@ -156,7 +156,7 @@ const Debug = new UduJS({
 <a name="serverColorScheme"></a>
 ## serverColorScheme <code>string | server only</code>
 
-The color scheme for the console on the server.
+The [color scheme] for the console on the server.
 Valid values are <code>dark</code>, <code>bright</code> or <code>custom</code>.
 The default value is <code>dark</code>.
 ```javascript
@@ -217,3 +217,4 @@ const Debug = new UduJS({
 ```
 
 [Русская версия здесь.]:../ru/custom-settings.md "Пользовательские настройки"
+[color scheme]:./color-scheme.md
