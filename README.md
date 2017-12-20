@@ -52,7 +52,7 @@ $ yarn add udujs
 const UduJS = require('udujs');
 const Debug = new UduJS();
 ```
-* direct connection of server methods.
+* direct connection of server methods (_recommended_).
 ```js
 const UduJS = require('udujs/Server');
 const Debug = new UduJS();
@@ -61,7 +61,7 @@ const Debug = new UduJS();
 
 #### Code on the client:
 
-* standard way (not recommended);
+* standard way (_not recommended_);
 ```js
 const UduJS = require('udujs');
 const Debug = new UduJS();

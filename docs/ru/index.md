@@ -51,7 +51,7 @@ $ yarn add udujs
 const UduJS = require('udujs');
 const Debug = new UduJS();
 ```
-* прямое подключение серверных методов.
+* прямое подключение серверных методов (_рекомендуется_).
 ```js
 const UduJS = require('udujs/Server');
 const Debug = new UduJS();
