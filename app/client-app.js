@@ -1,8 +1,10 @@
 const Misc = require('./misc');
 
+// eslint-disable-next-line no-undef
 const Debug = new UduJS({
   maxWidth: 'auto',
   showClearTitle: false,
+  consoleColorScheme: 'bright',
 });
 const allTypes = Misc.allTypesObject;
 const someCode = Misc.doSomeCode;
@@ -37,8 +39,8 @@ const someVariable = 123;
 Debug.observer(someVariable);
 
 // An example of interaction with the interface.
-let numberOfClicks = 0;
 $(document).ready(() => {
+  let numberOfClicks = 0;
   $('button#addTestString').on('mouseover', () => {
     Debug.observer(`Number of clicks: ${numberOfClicks}`);
   }).on('mouseleave', () => {

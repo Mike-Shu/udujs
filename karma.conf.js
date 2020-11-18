@@ -99,4 +99,3 @@ module.exports = (config) => {
     concurrency: 1,
   });
 };
-
